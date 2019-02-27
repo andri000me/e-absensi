@@ -224,11 +224,11 @@ class Home extends CI_Controller{
 		}
 		$data['SifatDokumen'] = array("1" => "Open/Publik", "0" => "Private/Khusus Mahasiswa");
 
-		$data['header'] = "header/header";
-        $data['navbar'] = "navbar/navbar";
-        $data['sidebar'] = "sidebar/sidebar";
-        $data['body'] = "body/dashboard";
-		$data['footer'] = "footer/footer";
+		$data['header'] = "header/header2";
+        $data['navbar'] = "navbar/navbar2";
+        $data['sidebar'] = "sidebar/sidebar2";
+        $data['body'] = "body/dashboard2";
+		$data['footer'] = "footer/footer2";
 		$this->load->view('template', $data);
 	}
 }
