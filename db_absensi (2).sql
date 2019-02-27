@@ -1,0 +1,416 @@
+-- phpMyAdmin SQL Dump
+-- version 4.3.11
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 11, 2017 at 05:50 AM
+-- Server version: 5.6.24
+-- PHP Version: 5.6.8
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `db_absensi`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `absen_dosen`
+--
+
+CREATE TABLE IF NOT EXISTS `absen_dosen` (
+  `IDDOSEN` varchar(20) NOT NULL,
+  `THNSM` varchar(5) NOT NULL,
+  `IDMAKUL` varchar(10) NOT NULL,
+  `KELAS` varchar(4) NOT NULL,
+  `SEMESTER` varchar(3) NOT NULL,
+  `IDPRODI` varchar(10) NOT NULL,
+  `PERTEMUAN` int(2) NOT NULL,
+  `TGL` varchar(10) NOT NULL,
+  `JM` time NOT NULL,
+  `JK` time NOT NULL,
+  `MATERI` tinytext NOT NULL,
+  `METODE` tinytext NOT NULL,
+  `TUGAS` tinytext NOT NULL,
+  `JLHHADIR` int(3) NOT NULL,
+  `JLHABSEN` int(3) NOT NULL,
+  `CREATED` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `absen_dosen`
+--
+
+INSERT INTO `absen_dosen` (`IDDOSEN`, `THNSM`, `IDMAKUL`, `KELAS`, `SEMESTER`, `IDPRODI`, `PERTEMUAN`, `TGL`, `JM`, `JK`, `MATERI`, `METODE`, `TUGAS`, `JLHHADIR`, `JLHABSEN`, `CREATED`) VALUES
+('0702131911891', '20162', 'INF211', '01', '2', '1000', 1, '2017-09-10', '05:10:00', '06:10:00', 'PerulanganA', '["Ceramah","Ceramah+","Diskusi"]', 'AAAA', 30, 2, '0000-00-00 00:00:00'),
+('0702131911891', '20162', 'INF211', '01', '2', '1000', 2, '2017-09-09', '12:44:00', '04:04:00', 'dsad', '["Beregu"]', 'asda', 31, 1, '2017-09-09 16:34:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `absen_mhs`
+--
+
+CREATE TABLE IF NOT EXISTS `absen_mhs` (
+  `IDMAHASISWA` varchar(20) NOT NULL,
+  `THNSM` varchar(5) NOT NULL,
+  `IDMAKUL` varchar(10) NOT NULL,
+  `IDPRODI` varchar(10) NOT NULL,
+  `KELAS` varchar(4) NOT NULL,
+  `SEMESTER` varchar(3) NOT NULL,
+  `PERTEMUAN` int(2) NOT NULL,
+  `ABSENSI` char(1) NOT NULL,
+  `CREATED` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `absen_mhs`
+--
+
+INSERT INTO `absen_mhs` (`IDMAHASISWA`, `THNSM`, `IDMAKUL`, `IDPRODI`, `KELAS`, `SEMESTER`, `PERTEMUAN`, `ABSENSI`, `CREATED`) VALUES
+('141041020006', '20162', 'INF211', '1000', '01', '2', 1, 'S', '2017-09-08 11:21:00'),
+('141041020006', '20162', 'INF211', '1000', '01', '2', 2, 'I', '2017-09-08 17:14:50'),
+('141041020006', '20162', 'INF211', '1000', '01', '2', 3, 'S', '2017-09-09 10:38:38'),
+('151041020022', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020022', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020022', '20162', 'INF211', '1000', '01', '2', 3, 'S', '2017-09-09 10:38:38'),
+('151041020025', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020025', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020025', '20162', 'INF211', '1000', '01', '2', 3, 'A', '2017-09-09 10:38:38'),
+('151041020026', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020026', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020026', '20162', 'INF211', '1000', '01', '2', 3, 'S', '2017-09-09 10:38:38'),
+('151041020027', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020027', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020027', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020028', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020028', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020028', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020030', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020030', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020030', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020031', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020031', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020031', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020032', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020032', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020032', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020033', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020033', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020033', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020034', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020034', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020034', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020035', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020035', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020035', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020036', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020036', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020036', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020037', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020037', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020037', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020040', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020040', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020040', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020049', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020049', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020049', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020050', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020050', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020050', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020051', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020051', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020051', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020052', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020052', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020052', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020054', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020054', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020054', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020055', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020055', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020055', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020056', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020056', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020056', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020058', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020058', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020058', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020059', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020059', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020059', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020060', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020060', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020060', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020061', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020061', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020061', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020062', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020062', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020062', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020063', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020063', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020063', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020064', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020064', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020064', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020066', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020066', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020066', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020068', '20162', 'INF211', '1000', '01', '2', 1, 'H', '2017-09-08 11:21:00'),
+('151041020068', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020068', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38'),
+('151041020071', '20162', 'INF211', '1000', '01', '2', 1, 'S', '2017-09-08 11:21:00'),
+('151041020071', '20162', 'INF211', '1000', '01', '2', 2, 'H', '2017-09-08 17:14:50'),
+('151041020071', '20162', 'INF211', '1000', '01', '2', 3, 'H', '2017-09-09 10:38:38');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `atur_bahan_ajar`
+--
+
+CREATE TABLE IF NOT EXISTS `atur_bahan_ajar` (
+  `IDSET` int(11) NOT NULL,
+  `IDDOSEN` varchar(25) NOT NULL,
+  `THSHM` varchar(5) NOT NULL,
+  `IDPRODI` varchar(10) NOT NULL,
+  `IDMAKUL` varchar(12) NOT NULL,
+  `NAMAKLS` varchar(10) NOT NULL,
+  `SEMESTER` varchar(2) NOT NULL,
+  `PERTEMUAN` int(2) NOT NULL,
+  `MATERI` int(11) NOT NULL,
+  `CREATED` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `atur_bahan_ajar`
+--
+
+INSERT INTO `atur_bahan_ajar` (`IDSET`, `IDDOSEN`, `THSHM`, `IDPRODI`, `IDMAKUL`, `NAMAKLS`, `SEMESTER`, `PERTEMUAN`, `MATERI`, `CREATED`) VALUES
+(1, '0702131911891', '20162', '1000', 'INF211', '01', '2', 1, 1, '2017-09-05 11:28:45'),
+(2, '0702131911891', '20162', '1000', 'INF211', '01', '2', 1, 2, '2017-09-05 11:28:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bahan_ajar`
+--
+
+CREATE TABLE IF NOT EXISTS `bahan_ajar` (
+  `ID` int(11) NOT NULL,
+  `JUDUL` tinytext NOT NULL,
+  `IDDOSEN` varchar(25) NOT NULL,
+  `KET_FILE` text NOT NULL,
+  `NAMA_FILE` tinytext NOT NULL,
+  `TIPEFILE` varchar(50) NOT NULL,
+  `SIFAT` int(1) NOT NULL DEFAULT '1',
+  `CREATED` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bahan_ajar`
+--
+
+INSERT INTO `bahan_ajar` (`ID`, `JUDUL`, `IDDOSEN`, `KET_FILE`, `NAMA_FILE`, `TIPEFILE`, `SIFAT`, `CREATED`) VALUES
+(1, 'Perulangan PHP', '0702131911891', 'Perulangan PHP', '0702131911891_1-audit-si.ppt', 'mspowerpoint', 1, '2017-09-05 11:25:23'),
+(2, 'Struktur Kondisi', '0702131911891', 'Struktur Kondisi', '0702131911891_5_-_Tata_Kelola_SI.pdf', 'pdf', 1, '2017-09-05 11:25:38'),
+(3, 'Array dan Fungsi', '0702131911891', 'Array dan Fungsi', '0702131911891_Contoh_Laporan_Audit.docx', 'msword', 1, '2017-09-05 11:26:05'),
+(4, 'Mysql', '0702131911891', 'Mysql', '0702131911891_Bab1_EDP_Auditing.ppt', 'mspowerpoint', 1, '2017-09-05 11:26:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `makul_dosen`
+--
+
+CREATE TABLE IF NOT EXISTS `makul_dosen` (
+  `IDDOSEN` varchar(25) NOT NULL,
+  `THSHM` varchar(5) NOT NULL,
+  `IDPRODI` varchar(10) NOT NULL,
+  `KDPSTMSPST` varchar(10) NOT NULL,
+  `NMPSTMSPST` varchar(150) NOT NULL,
+  `IDMAKUL` varchar(12) NOT NULL,
+  `NAMAKLS` varchar(10) NOT NULL,
+  `LABELKLS` varchar(5) NOT NULL,
+  `SEMESTER` varchar(2) NOT NULL,
+  `TAHUN` year(4) NOT NULL,
+  `NAMAMK` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `makul_dosen`
+--
+
+INSERT INTO `makul_dosen` (`IDDOSEN`, `THSHM`, `IDPRODI`, `KDPSTMSPST`, `NMPSTMSPST`, `IDMAKUL`, `NAMAKLS`, `LABELKLS`, `SEMESTER`, `TAHUN`, `NAMAMK`) VALUES
+('0702131911891', '20131', '1001.B', '15401', 'KEBIDANAN', 'BD511', '01', 'A', '1', 2014, 'PENGANTAR KOMPUTER'),
+('0702131911891', '20131', '1001.B', '15401', 'KEBIDANAN', 'BD511', '02', 'B', '1', 2014, 'PENGANTAR KOMPUTER'),
+('0702131911891', '20132', '1000', '55201', 'TEKNIK INFORMATIKA', 'TI028', '01', 'A', '2', 2014, 'PEMOGRAMAN BERBASIS WEB II'),
+('0702131911891', '20132', '1000', '55201', 'TEKNIK INFORMATIKA', 'TI028', '02', 'B', '2', 2014, 'PEMOGRAMAN BERBASIS WEB II'),
+('0702131911891', '20152', '1000', '55201', 'TEKNIK INFORMATIKA', 'INF206', '01', 'A', '2', 2016, 'AUDIT DAN KONTROL TEKNOLOGI INFORMASI'),
+('0702131911891', '20152', '1000', '55201', 'TEKNIK INFORMATIKA', 'INF217', '01', 'A', '2', 2016, 'MULTIMEDIA'),
+('0702131911891', '20152', '1000', '55201', 'TEKNIK INFORMATIKA', 'INF219', '01', 'A', '2', 2016, 'SKENARIO DAN DESAIN GAME'),
+('0702131911891', '20152', '1000', '55201', 'TEKNIK INFORMATIKA', 'TI033', '01', 'A', '2', 2016, 'TEKNIK KOMPILASI'),
+('0702131911891', '20152', '1000.B', '13201', 'ILMU KESEHATAN MASYARAKAT', 'PHL103', '01', 'A', '2', 2016, 'PENGANTAR TEKNOLOGI INFORMASI'),
+('0702131911891', '20152', '1001', '57201', 'SISTEM INFORMASI', 'INS218', '01', 'A', '2', 2016, 'MULTIMEDIA'),
+('0702131911891', '20161', '1001', '57201', 'SISTEM INFORMASI', 'INS212', '01', 'A', '1', 2017, 'PEMROGRAMAN BERBASIS WEB'),
+('0702131911891', '20161', '1001', '57201', 'SISTEM INFORMASI', 'INS223', '01', 'A', '1', 2017, 'E-COMMERCE'),
+('0702131911891', '20161', '1001', '57201', 'SISTEM INFORMASI', 'INS224', '01', 'A', '1', 2017, 'PEMROGRAMAN DATABASE'),
+('0702131911891', '20161', '1001', '57201', 'SISTEM INFORMASI', 'SI026', '01', 'A', '1', 2017, 'KEAMANAN KOMPUTER'),
+('0702131911891', '20161', '9008', '83207', 'PENDIDIKAN  ILMU KOMPUTER', 'CSE217', '01', 'A', '1', 2017, 'PEMOGRAMAN WEB'),
+('0702131911891', '20161', '9008', '83207', 'PENDIDIKAN  ILMU KOMPUTER', 'CSE218', '01', 'A', '1', 2017, 'KEAMANAN SISTEM KOMPUTER'),
+('0702131911891', '20161', '9008', '83207', 'PENDIDIKAN  ILMU KOMPUTER', 'CSE304', '01', 'A', '1', 2017, 'OPEN SOURCE SOFTWARE'),
+('0702131911891', '20162', '1000', '55201', 'TEKNIK INFORMATIKA', 'INF211', '01', 'A', '2', 2017, 'PEMOGRAMAN BERBASIS WEB II'),
+('0702131911891', '20162', '1000', '55201', 'TEKNIK INFORMATIKA', 'TI021', '03', 'NR', '2', 2017, 'SISTEM INFORMASI GEOGRAFIS'),
+('0702131911891', '20162', '1000', '55201', 'TEKNIK INFORMATIKA', 'TI028', '01', 'A', '2', 2017, 'PEMOGRAMAN BERBASIS WEB II'),
+('0702131911891', '20162', '1001', '57201', 'SISTEM INFORMASI', 'INS222', '01', 'A', '2', 2017, 'TESTING DAN IMPLEMENTASI SISTEM'),
+('0702131911891', '20162', '1001', '57201', 'SISTEM INFORMASI', 'INS403', '03', 'NR', '2', 2017, 'SISTEM INFORMASI GEOGRAFIS');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mhs_course`
+--
+
+CREATE TABLE IF NOT EXISTS `mhs_course` (
+  `IDMAHASISWA` varchar(25) NOT NULL,
+  `NAMAMHS` varchar(150) NOT NULL,
+  `IDMAKUL` varchar(15) NOT NULL,
+  `KELAS` varchar(10) NOT NULL,
+  `THNSM` char(5) NOT NULL,
+  `SEMESTER` smallint(5) NOT NULL,
+  `TAHUN` year(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mhs_course`
+--
+
+INSERT INTO `mhs_course` (`IDMAHASISWA`, `NAMAMHS`, `IDMAKUL`, `KELAS`, `THNSM`, `SEMESTER`, `TAHUN`) VALUES
+('141041020006', 'ANDREA PUTRA NORIDA', 'INF211', '01', '20162', 2, 2017),
+('151041020022', 'AYUB', 'INF211', '01', '20162', 2, 2017),
+('151041020025', 'JUJUN NURMANSYAH', 'INF211', '01', '20162', 2, 2017),
+('151041020026', 'IRFANDI', 'INF211', '01', '20162', 2, 2017),
+('151041020027', 'WAHYU WARDANA', 'INF211', '01', '20162', 2, 2017),
+('151041020028', 'IKA RAHMA AYU', 'INF211', '01', '20162', 2, 2017),
+('151041020030', 'MUHAMMAD FADHLY', 'INF211', '01', '20162', 2, 2017),
+('151041020031', 'FEBRIANITA', 'INF211', '01', '20162', 2, 2017),
+('151041020032', 'AMIRUL HADI HASIBUAN', 'INF211', '01', '20162', 2, 2017),
+('151041020033', 'DEDY KURNIAWAN', 'INF211', '01', '20162', 2, 2017),
+('151041020034', 'ERI SAFRIANTO', 'INF211', '01', '20162', 2, 2017),
+('151041020035', 'DEDISYAH PUTRA', 'INF211', '01', '20162', 2, 2017),
+('151041020036', 'JOKO TISUWIHARDI', 'INF211', '01', '20162', 2, 2017),
+('151041020037', 'KHOLIS RIFAI', 'INF211', '01', '20162', 2, 2017),
+('151041020040', 'MUHAMMAD HANIF AKBAR', 'INF211', '01', '20162', 2, 2017),
+('151041020049', 'ARDIANSYAH PUTRA', 'INF211', '01', '20162', 2, 2017),
+('151041020050', 'MUSHADDIQ', 'INF211', '01', '20162', 2, 2017),
+('151041020051', 'ZUL ASFI BAHRUNI', 'INF211', '01', '20162', 2, 2017),
+('151041020052', 'MUHAMMAD AVIAN ANDRIA', 'INF211', '01', '20162', 2, 2017),
+('151041020054', 'ISMAIL', 'INF211', '01', '20162', 2, 2017),
+('151041020055', 'WAHYUDI', 'INF211', '01', '20162', 2, 2017),
+('151041020056', 'AHMAD KAFI ALFAJRI', 'INF211', '01', '20162', 2, 2017),
+('151041020058', 'SHYNTIA AULIA DESWITA', 'INF211', '01', '20162', 2, 2017),
+('151041020059', 'CUT FACHRUL ROZI', 'INF211', '01', '20162', 2, 2017),
+('151041020060', 'MUHAMMAD YUSUF', 'INF211', '01', '20162', 2, 2017),
+('151041020061', 'IRYANI RAHMAH', 'INF211', '01', '20162', 2, 2017),
+('151041020062', 'HARDI BASTIAN AR', 'INF211', '01', '20162', 2, 2017),
+('151041020063', 'PERI SAILANDRA', 'INF211', '01', '20162', 2, 2017),
+('151041020064', 'DARUL HADI', 'INF211', '01', '20162', 2, 2017),
+('151041020066', 'BAHAGIA', 'INF211', '01', '20162', 2, 2017),
+('151041020068', 'MASYUDI', 'INF211', '01', '20162', 2, 2017),
+('151041020071', 'IRVAN REZA', 'INF211', '01', '20162', 2, 2017);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `profil_dosen`
+--
+
+CREATE TABLE IF NOT EXISTS `profil_dosen` (
+  `IDDOSEN` varchar(25) NOT NULL,
+  `NAMADOS` varchar(150) NOT NULL,
+  `PRODIDOS` varchar(15) NOT NULL,
+  `NAMAPRODIDOS` varchar(100) NOT NULL,
+  `PICTURE` varchar(150) NOT NULL,
+  `KEAHLIAN` tinytext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `profil_dosen`
+--
+
+INSERT INTO `profil_dosen` (`IDDOSEN`, `NAMADOS`, `PRODIDOS`, `NAMAPRODIDOS`, `PICTURE`, `KEAHLIAN`) VALUES
+('0702131911891', 'Zuhar Musliyana, S.T., M.T.', '9001', 'PENAMPUNG', 'default.png', '');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `absen_dosen`
+--
+ALTER TABLE `absen_dosen`
+  ADD PRIMARY KEY (`IDDOSEN`,`THNSM`,`IDMAKUL`,`KELAS`,`SEMESTER`,`IDPRODI`,`PERTEMUAN`);
+
+--
+-- Indexes for table `absen_mhs`
+--
+ALTER TABLE `absen_mhs`
+  ADD PRIMARY KEY (`IDMAHASISWA`,`THNSM`,`IDMAKUL`,`IDPRODI`,`KELAS`,`SEMESTER`,`PERTEMUAN`);
+
+--
+-- Indexes for table `atur_bahan_ajar`
+--
+ALTER TABLE `atur_bahan_ajar`
+  ADD PRIMARY KEY (`IDSET`);
+
+--
+-- Indexes for table `bahan_ajar`
+--
+ALTER TABLE `bahan_ajar`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `makul_dosen`
+--
+ALTER TABLE `makul_dosen`
+  ADD PRIMARY KEY (`IDDOSEN`,`THSHM`,`IDPRODI`,`IDMAKUL`,`NAMAKLS`,`SEMESTER`);
+
+--
+-- Indexes for table `mhs_course`
+--
+ALTER TABLE `mhs_course`
+  ADD PRIMARY KEY (`IDMAHASISWA`,`IDMAKUL`,`KELAS`,`THNSM`,`SEMESTER`);
+
+--
+-- Indexes for table `profil_dosen`
+--
+ALTER TABLE `profil_dosen`
+  ADD PRIMARY KEY (`IDDOSEN`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `atur_bahan_ajar`
+--
+ALTER TABLE `atur_bahan_ajar`
+  MODIFY `IDSET` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `bahan_ajar`
+--
+ALTER TABLE `bahan_ajar`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
