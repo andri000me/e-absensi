@@ -26,10 +26,7 @@
     <script src="<?php echo base_url();?>template/matrix_admin/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="<?php echo base_url();?>template/matrix_admin/assets/extra-libs/DataTables/datatables.min.js"></script>
     <script>
-        /****************************************
-         *       Basic Table                   *
-         ****************************************/
-        $('#zero_config').DataTable();
+        $('#tb_dashboard2').DataTable();
     </script>
 
 

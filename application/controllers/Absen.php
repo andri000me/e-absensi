@@ -197,6 +197,54 @@ class Absen extends CI_Controller{
 		$this->load->view('cetak_absen/berita_acara', $data);
 	}
 
+	public function edit_laporan(){
+		$IDMAKUL = trim($this->security->xss_clean($IdDos = $this->uri->segment(3)));
+		$thnAjar = trim($this->security->xss_clean($IdDos = $this->uri->segment(4)));
+		$IDPRODI = trim($this->security->xss_clean($IdDos = $this->uri->segment(5)));
+		$NAMAKLS = trim($this->security->xss_clean($IdDos = $this->uri->segment(6)));
+		$SEMESTER = trim($this->security->xss_clean($IdDos = $this->uri->segment(7)));
+
+		// $this->db->select('THSHM');
+		// $this->db->group_by('THSHM');
+		// $this->db->order_by('THSHM', 'DESC');
+		// $this->db->limit(1);
+		// $where = array('IDDOSEN' => $this->session->userdata('id_user'));
+		$where = array('IDDOSEN' => $this->session->userdata('id_user'), 'THSHM' => $thnAjar, 'IDPRODI' => $IDPRODI, 'IDMAKUL' => $IDMAKUL, 'NAMAKLS' => $NAMAKLS, 'SEMESTER' => $SEMESTER);
+		$cekData= $this->my_model->cek_data("makul_dosen", $where);
+		if($cekData->num_rows() >= 1){
+			$data['data_laporan'] = $cekData->result();
+
+			$data['header'] = "header/header2";
+			$data['navbar'] = "navbar/navbar2";
+			$data['sidebar'] = "sidebar/sidebar2";
+			$data['body'] = "body/v_edit_laporan";
+			$data['footer'] = "footer/footer2";
+			$this->load->view('template', $data);
+		}else{
+			$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a> Maaf Terjadi Kesalahan Data</div>");
+		}
+	}
+	
+	public function update_lap(){
+		$IDMAKUL = trim($this->security->xss_clean($this->input->post('idmakul')));
+		$IDPRODI = trim($this->security->xss_clean($this->input->post('idprodi')));
+		$NAMAMK = trim($this->security->xss_clean($this->input->post('namamk')));
+		$THNAJAR = trim($this->security->xss_clean($this->input->post('thnajar'))) ;
+		$KELAS = trim($this->security->xss_clean($this->input->post('kelas')));
+		$SEMESTER = trim($this->security->xss_clean($this->input->post('smt')));
+		$where = array('IDDOSEN' => $this->session->userdata('id_user'), 'THSHM' => $THNAJAR, 'IDPRODI' => $IDPRODI, 'IDMAKUL' => $IDMAKUL, 'NAMAKLS' => $KELAS);
+		$data = array('smt' => $SEMESTER);
+		if($this->my_model->update("makul_dosen", $where, $data)){
+			$this->session->set_flashdata("msg", "<br/><div class='alert alert-success' role='alert'>Data Berhasil disimpan...!</div>");
+		}else{
+			$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'>Data Gagal disimpan...!</div>");
+		}
+		redirect('absen');
+		// var_dump($where);
+		// var_dump($data);
+
+	}
+
 	public function index(){
 		// $this->load->view('body\view_laporan');
 		$where = array('IDDOSEN' => $this->session->userdata('id_user'));
@@ -263,11 +311,11 @@ class Absen extends CI_Controller{
 		}
 		$data['SifatDokumen'] = array("1" => "Open/Publik", "0" => "Private/Khusus Mahasiswa");
 
-		$data['header'] = "header/header";
-				$data['navbar'] = "navbar/navbar";
-				$data['sidebar'] = "sidebar/sidebar";
-				$data['body'] = "body/view_laporan";
-		$data['footer'] = "footer/footer";
+		$data['header'] = "header/header2";
+				$data['navbar'] = "navbar/navbar2";
+				$data['sidebar'] = "sidebar/sidebar2";
+				$data['body'] = "body/view_laporan2";
+		$data['footer'] = "footer/footer2";
 		$this->load->view('template', $data);
 	}
 }

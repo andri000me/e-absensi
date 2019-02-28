@@ -51,7 +51,7 @@
                <div class="card-body">
                   <h5 class="card-title">DATA AJAR TERKINI (<?php echo $thnAjar;?>)</h5>
                   <div class="table-responsive">
-                     <table id="zero_config" class="table table-striped table-bordered">
+                     <table id="tb_dashboard2" class="table table-striped table-bordered">
                         <thead class="text">
                            <tr>
                               <th>No</th>
@@ -93,7 +93,7 @@
                               ?>
                               </td>
                               <td>
-                                 <?php echo $value->SEMESTER;?>
+                                 <?php echo $value->smt;?>
                               </td>
                            </tr>
                            <?php $no++;

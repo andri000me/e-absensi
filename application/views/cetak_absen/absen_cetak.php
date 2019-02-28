@@ -99,6 +99,7 @@
 
 						<tbody>
 							<?php
+							 $IDMAKUL = trim($this->security->xss_clean($IdDos = $this->uri->segment(3)));
 							if(isset($absen_mhsw)){
 								$no=1;
 								foreach($absen_mhsw as $value){?>
@@ -124,6 +125,8 @@
 										$this->db->like("ABSENSI", "H");
 										$this->db->from('absen_mhs');
 										$this->db->where('IDMAHASISWA', $value->IDMAHASISWA);
+										$this->db->where('THNSM', $value->THNSM);
+										$this->db->where('IDMAKUL', $IDMAKUL);
 										$jmlhhadir = $this->db->count_all_results();
 										$pershdr = ($jmlhhadir/16) * 100;
 
