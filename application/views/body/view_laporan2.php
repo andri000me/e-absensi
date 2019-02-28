@@ -86,7 +86,7 @@
                                  </div>
                               </td>
                               <td>
-                              <a class="btn btn-danger" href="<?php echo base_url()?>absen/edit_laporan/<?php echo $value->IDMAKUL;?>/<?php echo $value->THSHM;?>/<?php echo $value->IDPRODI;?>/<?php echo $value->NAMAKLS;?>/<?php echo $value->SEMESTER;?>">Edit</a>
+                                 <a class="btn btn-danger" href="<?php echo base_url()?>absen/edit_laporan/<?php echo $value->IDMAKUL;?>/<?php echo $value->THSHM;?>/<?php echo $value->IDPRODI;?>/<?php echo $value->NAMAKLS;?>/<?php echo $value->SEMESTER;?>">Edit</a>
                               </td>
                            </tr>
                            <?php $no++;

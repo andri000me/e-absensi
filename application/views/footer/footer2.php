@@ -27,6 +27,7 @@
     <script src="<?php echo base_url();?>template/matrix_admin/assets/extra-libs/DataTables/datatables.min.js"></script>
     <script>
         $('#tb_dashboard2').DataTable();
+        $('#zero_config').DataTable();
     </script>
 
 

@@ -66,7 +66,7 @@
                      <div class="form-group row">
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">SEMESTER</label>
                         <div class="col-sm-9">
-                           <input type="number" class="form-control" id="fname" name="smt" value="<?php echo $lap->smt;?>">
+                           <input type="number" class="form-control" id="fname" name="smt" value="<?php echo $lap->smt;?>" required>
                         </div>
                      </div>
                   </div>

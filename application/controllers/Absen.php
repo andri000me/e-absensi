@@ -16,6 +16,7 @@ class Absen extends CI_Controller{
 			redirect('login');
 		}
 	}
+
 	public function dosenact(){
 		print_r($_POST);
 		$PERTEMUAN = trim($this->security->xss_clean($this->input->post('pertemuan')));
@@ -203,12 +204,6 @@ class Absen extends CI_Controller{
 		$IDPRODI = trim($this->security->xss_clean($IdDos = $this->uri->segment(5)));
 		$NAMAKLS = trim($this->security->xss_clean($IdDos = $this->uri->segment(6)));
 		$SEMESTER = trim($this->security->xss_clean($IdDos = $this->uri->segment(7)));
-
-		// $this->db->select('THSHM');
-		// $this->db->group_by('THSHM');
-		// $this->db->order_by('THSHM', 'DESC');
-		// $this->db->limit(1);
-		// $where = array('IDDOSEN' => $this->session->userdata('id_user'));
 		$where = array('IDDOSEN' => $this->session->userdata('id_user'), 'THSHM' => $thnAjar, 'IDPRODI' => $IDPRODI, 'IDMAKUL' => $IDMAKUL, 'NAMAKLS' => $NAMAKLS, 'SEMESTER' => $SEMESTER);
 		$cekData= $this->my_model->cek_data("makul_dosen", $where);
 		if($cekData->num_rows() >= 1){
@@ -240,9 +235,6 @@ class Absen extends CI_Controller{
 			$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'>Data Gagal disimpan...!</div>");
 		}
 		redirect('absen');
-		// var_dump($where);
-		// var_dump($data);
-
 	}
 
 	public function index(){
