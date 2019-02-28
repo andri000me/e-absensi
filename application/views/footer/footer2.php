@@ -1,4 +1,7 @@
 </div>
+    <div class="row-fluid float-right mr-5 mt-4 mb-4">
+      <div id="footer" class="span12"> <?= date('Y'); ?> &copy; Universitas Ubudiyah Indonesia | All Right Reserved | WebDev By<a href="https://uui.ac.id"> ICT- UUI</a> </div>
+    </div>
 <script src="<?php echo base_url();?>template/matrix_admin/assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="<?php echo base_url();?>template/matrix_admin/dist/js/jquery.ui.touch-punch-improved.js"></script>
 <script src="<?php echo base_url();?>template/matrix_admin/dist/js/jquery-ui.min.js"></script>

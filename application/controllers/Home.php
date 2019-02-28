@@ -71,15 +71,15 @@ class Home extends CI_Controller{
 	}
 
 	public function sinkronisasi(){
-		$kirim = file_get_contents('http://10.10.3.51/mk_dosen/list_course/'.$this->session->userdata('id_user'));
-		// $kirim= $this->my_model->fetchUrl('http://data.uui.ac.id/mk_dosen/list_course/'.$this->session->userdata('id_user'));
+		// $kirim = file_get_contents('http://10.10.3.51/mk_dosen/list_course/'.$this->session->userdata('id_user'));
+		$kirim= $this->my_model->fetchUrl('https://data.uui.ac.id/mk_dosen/list_course/'.$this->session->userdata('id_user'));
 		$respon = json_decode($kirim, true);
 		if(isset($respon['status']) && $respon['status'] <= 0){
 			$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Sinkronisasi gagal. Data tidak ditemukan!</div>");
 			redirect('home');
 		}else{
-			// $SinkronDosen= $this->my_model->fetchUrl('http://data.uui.ac.id/dosen/detail_dos/'.$this->session->userdata('id_user'));
-			$SinkronDosen = file_get_contents('http://10.10.3.51/dosen/detail_dos/'.$this->session->userdata('id_user'));
+			$SinkronDosen= $this->my_model->fetchUrl('https://data.uui.ac.id/dosen/detail_dos/'.$this->session->userdata('id_user'));
+			// $SinkronDosen = file_get_contents('http://10.10.3.51/dosen/detail_dos/'.$this->session->userdata('id_user'));
 			$responDos = json_decode($SinkronDosen, true);
 			if(isset($respon['responDos']) && $respon['responDos'] <= 0){
 				$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Profil dosen tidak dapat disinkronisasi!</div>");
@@ -117,8 +117,8 @@ class Home extends CI_Controller{
 		$IDMAKUL = trim($this->security->xss_clean($this->input->get('IDMAKUL')));
 		$KELAS = trim($this->security->xss_clean($this->input->get('KELAS')));
 		$THNSM = trim($this->security->xss_clean($this->input->get('THNSM')));
-		// $kirim= $this->my_model->fetchUrl('http://data.uui.ac.id/mk_dosen/list_mhs/'.$this->session->userdata('id_user').'?IDMAKUL='.$IDMAKUL.'&KELAS='.$KELAS.'&THNSM='.$THNSM);
-		$kirim = file_get_contents('http://10.10.3.51/mk_dosen/list_mhs/'.$this->session->userdata('id_user').'?IDMAKUL='.$IDMAKUL.'&KELAS='.$KELAS.'&THNSM='.$THNSM);
+		$kirim= $this->my_model->fetchUrl('https://data.uui.ac.id/mk_dosen/list_mhs/'.$this->session->userdata('id_user').'?IDMAKUL='.$IDMAKUL.'&KELAS='.$KELAS.'&THNSM='.$THNSM);
+		// $kirim = file_get_contents('http://10.10.3.51/mk_dosen/list_mhs/'.$this->session->userdata('id_user').'?IDMAKUL='.$IDMAKUL.'&KELAS='.$KELAS.'&THNSM='.$THNSM);
 		$respon = json_decode($kirim, true);
 		//echo $kirim;
 		if(isset($respon['status']) && $respon['status'] <= 0){
