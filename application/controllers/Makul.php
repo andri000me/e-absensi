@@ -136,11 +136,11 @@ class Makul extends CI_Controller{
 				$data['GetBahanAjar'] = $GetBahanAjar->result();
 			}
 		}
-		$data['header'] = "header/header";
-        $data['navbar'] = "navbar/navbar";
-        $data['sidebar'] = "sidebar/sidebar";
-        $data['body'] = "body/view_makul_detail";
-		$data['footer'] = "footer/footer";
+		$data['header'] = "header/header2";
+        $data['navbar'] = "navbar/navbar2";
+        $data['sidebar'] = "sidebar/sidebar2";
+        $data['body'] = "body/view_makul_detail2";
+		$data['footer'] = "footer/footer2";
 		$this->load->view('template', $data);
 		//$this->load->view('body/view_makul_detail', $data);
 	}
@@ -164,11 +164,11 @@ class Makul extends CI_Controller{
 		}else{
 			$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data MK dosen Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
 		}
-		$data['header'] = "header/header";
-        $data['navbar'] = "navbar/navbar";
-        $data['sidebar'] = "sidebar/sidebar";
-        $data['body'] = "body/view_makul_thsm";
-		$data['footer'] = "footer/footer";
+		$data['header'] = "header/header2";
+        $data['navbar'] = "navbar/navbar2";
+        $data['sidebar'] = "sidebar/sidebar2";
+        $data['body'] = "body/view_makul_thsm2";
+		$data['footer'] = "footer/footer2";
 		$this->load->view('template', $data);
 	}
 

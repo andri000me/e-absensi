@@ -31,6 +31,7 @@
     <script>
         $('#tb_dashboard2').DataTable();
         $('#zero_config').DataTable();
+        $('#tb_rwajar').DataTable();
     </script>
 
 
