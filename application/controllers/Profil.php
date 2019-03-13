@@ -10,7 +10,7 @@ class Profil extends CI_Controller{
 		$this->load->helper('file');
 		$this->load->helper('download');
 		ini_set('date.timezone', 'Asia/Jakarta');
-		if(!$this->session->userdata('id_user')){
+		if(!$this->session->userdata('id_user') AND $this->session->userdata('id_user') != "0"){
 			$this->session->set_flashdata("msg", "<br/><div class='alert alert-info'>
 			<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
 			<strong></strong> Silahkan login terlebih dahulu.

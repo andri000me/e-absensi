@@ -7,7 +7,7 @@ class Makul extends CI_Controller{
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('user_agent');
 		ini_set('date.timezone', 'Asia/Jakarta');
-		if(!$this->session->userdata('id_user')){
+		if(!$this->session->userdata('id_user') AND $this->session->userdata('id_user') != "0"){
 			$this->session->set_flashdata("msg", "<br/><div class='alert alert-info'>
 			<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
 			<strong></strong> Silahkan login terlebih dahulu.
@@ -71,8 +71,6 @@ class Makul extends CI_Controller{
 			}
 			$data['thnAjar'] = $smt_show." ".$thn_ajr;
 			$data['thnAjarInt'] = $thnAjar;
-			//print_r($CekMakul->result());
-
 			$data['data_mk'] = $CekMakul->result();
 		}else{
 			$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data MK dosen Tidak ditemukan. Silahkan ulangi kembali..!</div>");
@@ -93,14 +91,30 @@ class Makul extends CI_Controller{
 		}
 
 		$data['MetodeAjar'] = array("Kelompok" => "Kelompok (Metode belajar kelompok)", "Ceramah" => "Ceramah (Presentasi biasa)", 'Ceramah+' => 'Ceramah + Diskusi', "Studi" => "Studi Kasus", "Diskusi" => "Diskusi Kelompok", "Demontrasi" => "Demontrasi (Demonstration Method)", "Tutorial" => "Tutorial (Tutorial Method)", "PemecahanMasalah" => "Pemecahan Masalah (Problem solving method)", "Percobaan" => "Percobaan (Experimental Method)", "Perancangan" => "Perancangan (Projeck Method)", "Resitasi" => "Resitasi (Recitation Method)", "SesamaTeman" => "Sesama Teman (Peer Teaching Method)");
-
+		
 		if($this->input->get('pertemuan')){ //Cek input absen Mhs
 			$PERTEMUAN = trim($this->security->xss_clean($this->input->get('pertemuan')));
-			$where = array('THNSM' => $thnAjar, 'IDPRODI' => $IDPRODI, 'IDMAKUL' => $IDMAKUL, 'KELAS' => $NAMAKLS, 'SEMESTER' => $SEMESTER, 'PERTEMUAN' => $PERTEMUAN);
-			$CekAbsenMhs= $this->my_model->cek_data("absen_mhs", $where);
-			if($CekAbsenMhs->num_rows() >= 1){
-				$data['GetAbsenMhs'] = $CekAbsenMhs->result();
+			
+
+			$cek_mhs = $this->my_model->cek_mhs($IDMAKUL, $thnAjar, $IDPRODI, $NAMAKLS, $SEMESTER, $PERTEMUAN);
+			$data['GetAbsenMhs'] = $cek_mhs;
+
+			$cek_mhs_absen = $this->my_model->cek_mhs_absen($IDMAKUL, $thnAjar, $IDPRODI, $NAMAKLS, $SEMESTER, $PERTEMUAN);
+			//$data['GetAbsenMhsDetail'] = $cek_mhs_absen;
+			if($cek_mhs_absen != ''){
+				foreach($cek_mhs_absen as $value) {
+					$GetAbsenMhsDetail[$value->IDMAHASISWA] = $value->ABSENSI;
+				}
+				$data['GetAbsenMhsDetail'] = $GetAbsenMhsDetail;
 			}
+
+			// $where = array('a.IDMAKUL' => $IDMAKUL, 'a.THNSM' => $thnAjar, 'a.IDPRODI' => $IDPRODI, 'a.KELAS' => $NAMAKLS, 'a.SEMESTER' => $SEMESTER, 'a.PERTEMUAN' => $PERTEMUAN);
+			// $this->db->join('mhs_course b', 'a.IDMAHASISWA = b.IDMAHASISWA','left');			
+			// $CekAbsenMhs= $this->my_model->cek_data('absen_mhs a', $where);
+			// $cek_mhs = $this->my_model->cek_mhs('absen_mhs a', $where);
+			// if($CekAbsenMhs->num_rows() >= 1){
+			// 	$data['GetAbsenMhs'] = $CekAbsenMhs->result();
+			// }
 
 			$data['JlhMhsHadir'] = $data['JlhMhsAbsen'] = 0;
 			$where = array('THNSM' => $thnAjar, 'IDPRODI' => $IDPRODI, 'IDMAKUL' => $IDMAKUL, 'KELAS' => $NAMAKLS, 'SEMESTER' => $SEMESTER, 'PERTEMUAN' => $PERTEMUAN, 'ABSENSI' => 'H');
@@ -137,9 +151,9 @@ class Makul extends CI_Controller{
 			}
 		}
 		$data['header'] = "header/header2";
-        $data['navbar'] = "navbar/navbar2";
-        $data['sidebar'] = "sidebar/sidebar2";
-        $data['body'] = "body/view_makul_detail2";
+      	$data['navbar'] = "navbar/navbar2";
+      	$data['sidebar'] = "sidebar/sidebar2";
+      	$data['body'] = "body/view_makul_detail2";
 		$data['footer'] = "footer/footer2";
 		$this->load->view('template', $data);
 		//$this->load->view('body/view_makul_detail', $data);
@@ -165,9 +179,9 @@ class Makul extends CI_Controller{
 			$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data MK dosen Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
 		}
 		$data['header'] = "header/header2";
-        $data['navbar'] = "navbar/navbar2";
-        $data['sidebar'] = "sidebar/sidebar2";
-        $data['body'] = "body/view_makul_thsm2";
+			$data['navbar'] = "navbar/navbar2";
+			$data['sidebar'] = "sidebar/sidebar2";
+			$data['body'] = "body/view_makul_thsm2";
 		$data['footer'] = "footer/footer2";
 		$this->load->view('template', $data);
 	}

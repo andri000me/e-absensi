@@ -52,4 +52,40 @@ class My_model extends CI_Model{
 		}
 		return false;
 	}
+
+	function cek_mhs($IDMAKUL = "", $thnAjar = "", $IDPRODI = "", $NAMAKLS = "", $SEMESTER = "", $PERTEMUAN = ""){
+		//$this->db->select('a.*, (SELECT mhs_course.NAMAMHS FROM mhs_course WHERE mhs_course.IDMAHASISWA = a.IDMAHASISWA limit 1) as NAMAMHS');
+		$this->db->from('mhs_course a');
+		$this->db->where('a.IDMAKUL', $IDMAKUL);
+		$this->db->where('a.THNSM', $thnAjar);
+		//$this->db->where('a.IDPRODI', $IDPRODI);
+		$this->db->where('a.KELAS', $NAMAKLS);
+		$this->db->where('a.SEMESTER', $SEMESTER);
+		//$this->db->where('a.PERTEMUAN', $PERTEMUAN);
+			
+		$result = $this->db->get();
+		if($result->num_rows() > 0){
+			return $result->result();
+		} else {
+			return NULL;
+		}
+	}
+	
+	function cek_mhs_absen($IDMAKUL = "", $thnAjar = "", $IDPRODI = "", $NAMAKLS = "", $SEMESTER = "", $PERTEMUAN = ""){
+		$this->db->from('absen_mhs a');
+		$this->db->where('a.IDMAKUL', $IDMAKUL);
+		$this->db->where('a.THNSM', $thnAjar);
+		$this->db->where('a.IDPRODI', $IDPRODI);
+		$this->db->where('a.KELAS', $NAMAKLS);
+		$this->db->where('a.SEMESTER', $SEMESTER);
+		$this->db->where('a.PERTEMUAN', $PERTEMUAN);
+			
+		$result = $this->db->get();
+		if($result->num_rows() > 0){
+			return $result->result();
+		} else {
+			return NULL;
+		}
+
+	}
 }?>

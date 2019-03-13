@@ -157,7 +157,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   															<a href="<?php echo base_url();?>publik/download/<?php echo $value1['NAMA_FILE'];?>" title="Download"><b><?php echo $value1['JUDUL'];?></b></a> (publik)
   														</td>
   														<td><?php echo $value1['PERTEMUAN'];?></td>
-  													</tr><?php
+  													<tr/><?php
   												}
   												$no++;
   											}?>
@@ -202,12 +202,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <table class="table table-striped table-bordered templatemo-user-table">
                               <thead>
                                 <tr>
-                                  <th rowspan="2" width="3%" class="text-center">No</th>
-                                  <th rowspan="2" class="text-center">NIM</th>
-                                  <!-- <th rowspan="2"><center>Nama Mahasiswa</center></th> -->
-                                  <th colspan="16" class="text-center">Kehadiran Mahasiswa</th>
-                                  <th rowspan="2" width="10%" class="text-center">Jumlah Hadir</th>
-                                  <th rowspan="2" width="10%" class="text-center">Persentase Hadir</th>
+                                  <th rowspan="2" width="3%"><center>No</center></th>
+                                  <th rowspan="2"><center>NIM</center></th>
+                                  <th rowspan="2"><center>Nama Mahasiswa</center></th>
+                                  <th colspan="16"><center>Kehadiran Mahasiswa</th>
+                                  <th rowspan="2" width="10%"><center>Jumlah Hadir</th>
+                                  <th rowspan="2" width="10%"><center>Persentase Hadir</th>
                                 </tr>
                                 <?php
                                 for($pertemuan=1; $pertemuan <= 16; $pertemuan++){
@@ -218,16 +218,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                               <tbody>
                                 <?php
-                                $IDMAKUL = trim($this->security->xss_clean($IdDos = $this->uri->segment(4)));
+                                $IDMAKUL = trim($this->security->xss_clean($this->uri->segment(4)));
                                 if(isset($absen_mhsw)){
                                   $no=1;
                                   foreach($absen_mhsw as $value){?>
                                     <tr class="odd gradeX">
-                                      <td class="text-center"><?php echo $no;?></td>
+                                      <td><center><?php echo $no;?></td>
                                       <td><?php echo $value->IDMAHASISWA;?></td>
-                                      <!-- <td>
+                                      <td>
                                         <?php echo $value->NAMAMHS;?>
-                                      </td> -->
+                                      </td>
                                       <!-- tabel data absen-->
                                       <?php
                                       for($absen=1; $absen <= 16; $absen++){
@@ -240,19 +240,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                       }
 
                                       // hitung jumlah kehadiran
-
-                                      $this->db->like("ABSENSI", "H");
                                       $this->db->from('absen_mhs');
+                                      $this->db->like("ABSENSI", "H");
                                       $this->db->where('IDMAHASISWA', $value->IDMAHASISWA);
                                       $this->db->where('IDMAKUL', $IDMAKUL);
-                                      $this->db->where('THNSM', $value->THNSM);
+                                      $this->db->where('IDPRODI', $value->IDPRODI);
+                                      
                                       $jmlhhadir = $this->db->count_all_results();
                                       $pershdr = ($jmlhhadir/16) * 100;
 
                                        // $data['jmlhdr1'] = $jmlhhadir;
                                        ?>
-                                      <td width="50" style="text-align: center;"><?= $jmlhhadir; ?></td>
-                                      <td width="50" style="text-align: center;"><?= $pershdr; ?> %</td>
+                                      <td width="50" style="text-align: center;"><?php echo $jmlhhadir; ?></td>
+                                      <td width="50" style="text-align: center;"><?php  echo $pershdr; ?> %</td>
+                                      <!--<td width="50" style="text-align: center;"></td>-->
+                                      <!--<td width="50" style="text-align: center;"></td>-->
                                     </tr><?php
                                     $no++;
                                   }
@@ -301,7 +303,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                            ?>
   												<td><?php echo $kelas;?></td>
                           <td><?php echo $value->NMPSTMSPST; ?>	</td>
-                          <td><?php echo $value->SEMESTER; ?>	</td>
+                          <td><?php echo $value->smt; ?>	</td>
   											</tr><?php
   											$no++;
   										}?>

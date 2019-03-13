@@ -6,7 +6,7 @@ class Home extends CI_Controller{
 		$this->load->model('my_model');
 		$this->load->library('form_validation');
 		$this->load->helper('file');
-		if(!$this->session->userdata('id_user')){
+		if(!$this->session->userdata('id_user') AND $this->session->userdata('id_user') != "0"){
 			$this->session->set_flashdata("msg", "<br/><div class='alert alert-info'>
 			<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
 			<strong></strong> Silahkan login terlebih dahulu.
@@ -118,7 +118,7 @@ class Home extends CI_Controller{
 		$KELAS = trim($this->security->xss_clean($this->input->get('KELAS')));
 		$THNSM = trim($this->security->xss_clean($this->input->get('THNSM')));
 		$kirim= $this->my_model->fetchUrl('https://data.uui.ac.id/mk_dosen/list_mhs/'.$this->session->userdata('id_user').'?IDMAKUL='.$IDMAKUL.'&KELAS='.$KELAS.'&THNSM='.$THNSM);
-		// $kirim = file_get_contents('http://10.10.3.51/mk_dosen/list_mhs/'.$this->session->userdata('id_user').'?IDMAKUL='.$IDMAKUL.'&KELAS='.$KELAS.'&THNSM='.$THNSM);
+		// $kirim = file_get_contents('http://localhost/portal_data/mk_dosen/list_mhs/'.$this->session->userdata('id_user').'?IDMAKUL='.$IDMAKUL.'&KELAS='.$KELAS.'&THNSM='.$THNSM);
 		$respon = json_decode($kirim, true);
 		//echo $kirim;
 		if(isset($respon['status']) && $respon['status'] <= 0){
@@ -131,9 +131,12 @@ class Home extends CI_Controller{
 				if($CekMhs->num_rows() >= 1){
 					$data = array('IDMAHASISWA' => $value['IDMAHASISWA'], 'NAMAMHS' => $value['NAMAMHS'], 'IDMAKUL' => $value['IDMAKUL'], 'KELAS' => $value['KELAS'], 'THNSM' => $value['THNSM'], 'SEMESTER' => $value['SEMESTER'], 'TAHUN' => $value['TAHUN']);
 					$this->my_model->update("mhs_course", $where, $data);
+					//echo '<br/>'.$value['IDMAHASISWA'];
 				}else{
 					$data = array('IDMAHASISWA' => $value['IDMAHASISWA'], 'NAMAMHS' => $value['NAMAMHS'], 'IDMAKUL' => $value['IDMAKUL'], 'KELAS' => $value['KELAS'], 'THNSM' => $value['THNSM'], 'SEMESTER' => $value['SEMESTER'], 'TAHUN' => $value['TAHUN']);
 					$this->my_model->tambahdata("mhs_course", $data);
+					
+					
 				}
 			}
 			redirect($_SERVER['HTTP_REFERER']);
