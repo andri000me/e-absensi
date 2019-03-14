@@ -11,7 +11,7 @@ class Absen extends CI_Controller
 		$this->load->library('user_agent');
 		ini_set('date.timezone', 'Asia/Jakarta');
 		if (!$this->session->userdata('id_user') and $this->session->userdata('id_user') != "0") {
-			$this->session->set_flashdata("msg", "<br/><div class='alert alert-info'>
+			$this->session->set_flashdata("msg", "<br/><div class='alert alert-info' role='alert'>
 			<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
 			<strong></strong> Silahkan login terlebih dahulu.
 			</div>");
@@ -43,17 +43,17 @@ class Absen extends CI_Controller
 			$ShowAbsenMhs = $CekAbsenDos->row();
 			$data = array('IDDOSEN' => $this->session->userdata('id_user'), 'THNSM' => $THNSM, 'IDPRODI' => $IDPRODI, 'IDMAKUL' => $IDMAKUL, 'KELAS' => $KELAS, 'SEMESTER' => $SMT, 'PERTEMUAN' => $PERTEMUAN, 'TGL' => $TGL, 'JM' => $JM, 'JK' => $JK, 'MATERI' => $MATERI, 'METODE' => $METODE, 'TUGAS' => $TUGAS, 'JLHHADIR' => $JLHHADIR, 'JLHABSEN' => $JLHABSEN);
 			if ($this->my_model->update("absen_dosen", $where, $data)) {
-				$this->session->set_flashdata("msg", "<br/><div class='alert bg-info' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi berhasil disimpan..!</div>");
+				$this->session->set_flashdata("msg", "<br/><div class='alert alert-info' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi berhasil disimpan..!</div>");
 			} else {
-				$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi gagal disimpan..!</div>");
+				$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi gagal disimpan..!</div>");
 			}
 			redirect($_SERVER['HTTP_REFERER']);
 		} else {
 			$data = array('IDDOSEN' => $this->session->userdata('id_user'), 'THNSM' => $THNSM, 'IDPRODI' => $IDPRODI, 'IDMAKUL' => $IDMAKUL, 'KELAS' => $KELAS, 'SEMESTER' => $SMT, 'PERTEMUAN' => $PERTEMUAN, 'TGL' => $TGL, 'JM' => $JM, 'JK' => $JK, 'MATERI' => $MATERI, 'METODE' => $METODE, 'TUGAS' => $TUGAS, 'JLHHADIR' => $JLHHADIR, 'JLHABSEN' => $JLHABSEN, 'CREATED' => $CREATED);
 			if ($this->my_model->tambahdata("absen_dosen", $data)) {
-				$this->session->set_flashdata("msg", "<br/><div class='alert bg-info' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi berhasil disimpan..!</div>");
+				$this->session->set_flashdata("msg", "<br/><div class='alert alert-info' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi berhasil disimpan..!</div>");
 			} else {
-				$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi gagal disimpan..!</div>");
+				$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi gagal disimpan..!</div>");
 			}
 			redirect($_SERVER['HTTP_REFERER']);
 		}
@@ -76,9 +76,9 @@ class Absen extends CI_Controller
 					//echo $mhs." : ".$ShowAbsenMhs->ABSENSI ." update to ".$value."<br/>";
 					$data = array('ABSENSI' => $value);
 					if ($this->my_model->update("absen_mhs", $where, $data)) {
-						$this->session->set_flashdata("msg", "<br/><div class='alert bg-info' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi berhasil disimpan..!</div>");
+						$this->session->set_flashdata("msg", "<br/><div class='alert alert-info' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi berhasil disimpan..!</div>");
 					} else {
-						$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi gagal disimpan..!</div>");
+						$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi gagal disimpan..!</div>");
 					}
 				} /* else{
 					echo $mhs." : ".$ShowAbsenMhs->ABSENSI ." not update same value ".$value."<br/>";
@@ -86,9 +86,9 @@ class Absen extends CI_Controller
 			} else {
 				$data = array('IDMAHASISWA' => $mhs, 'THNSM' => $THNSM, 'IDPRODI' => $IDPRODI, 'IDMAKUL' => $IDMAKUL, 'KELAS' => $KELAS, 'SEMESTER' => $SMT, 'PERTEMUAN' => $PERTEMUAN, 'ABSENSI' => $value, 'CREATED' => $CREATED);
 				if ($this->my_model->tambahdata("absen_mhs", $data)) {
-					$this->session->set_flashdata("msg", "<br/><div class='alert bg-info' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi berhasil disimpan..!</div>");
+					$this->session->set_flashdata("msg", "<br/><div class='alert alert-info' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi berhasil disimpan..!</div>");
 				} else {
-					$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi gagal disimpan..!</div>");
+					$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Absensi gagal disimpan..!</div>");
 				}
 			}
 		}
@@ -127,7 +127,7 @@ class Absen extends CI_Controller
 				$data['thnAjar'] = $smt_show . " " . $thn_ajr;
 				$data['data_mkterkini'] = $CekMakul->result();
 			} else {
-				$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data MK dosen Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
+				$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data MK dosen Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
 			}
 		}
 
@@ -189,7 +189,7 @@ class Absen extends CI_Controller
 				$data['thnAjar'] = $smt_show . " " . $thn_ajr;
 				$data['data_mkterkini'] = $CekMakul->result();
 			} else {
-				$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Mata Kuliah Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
+				$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Mata Kuliah Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
 			}
 		}
 
@@ -222,7 +222,7 @@ class Absen extends CI_Controller
 			$data['footer'] = "footer/footer2";
 			$this->load->view('template', $data);
 		} else {
-			$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a> Maaf Terjadi Kesalahan Data</div>");
+			$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a> Maaf Terjadi Kesalahan Data</div>");
 		}
 	}
 
@@ -255,7 +255,7 @@ class Absen extends CI_Controller
 		if ($CekMakul->num_rows() >= 1) {
 			$data['data_mk'] = $CekMakul->result();
 		} else {
-			$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data MK dosen Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
+			$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data MK dosen Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
 		}
 
 		$this->db->select('THSHM');
@@ -281,7 +281,7 @@ class Absen extends CI_Controller
 				$data['thnAjar'] = $smt_show . " " . $thn_ajr;
 				$data['data_mkterkini'] = $CekMakul->result();
 			} else {
-				$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data MK dosen Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
+				$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data MK dosen Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
 			}
 		}
 
@@ -319,4 +319,3 @@ class Absen extends CI_Controller
 		$this->load->view('template', $data);
 	}
 }
-
