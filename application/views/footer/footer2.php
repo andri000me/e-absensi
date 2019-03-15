@@ -85,9 +85,9 @@
         todayHighlight: true,
         format: "yyyy-mm-dd"
     });
-    var quill = new Quill('#editor', {
-        theme: 'snow'
-    });
+    // var quill = new Quill('#editor', {
+    //     theme: 'snow'
+    // });
 </script>
 
 

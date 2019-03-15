@@ -49,7 +49,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title"> <span class="icon"> <i class="icon-th"></i> </span>
@@ -64,14 +64,14 @@
                                 <?php echo $value->IDMAKUL; ?> -
                                 <?php echo $value->NAMAMK; ?></b>
                             <hr>
-                            <div class="card-horizontal">
+                            <div class="card-horizontal col-md-12">
                                 <div class="card-body">
                                     <form action="<?php echo base_url(); ?>makul/detail/<?php echo $value->IDMAKUL; ?>/<?php echo $value->THSHM; ?>/<?php echo $value->IDPRODI; ?>/<?php echo $value->NAMAKLS; ?>/<?php echo $value->SEMESTER; ?>" method="GET" class="form-horizontal">
                                         <div class="form-group row">
-                                            <label for="pilper" class="col-sm-2 text-center pt-2">Pilih Pertemuan</label>
-                                            <div class="col-sm-9" id="pilper">
+                                            <label for="pilper" class="col-md-2 text-center pt-2">Pilih Pertemuan</label>
+                                            <div class="col-md-10" id="pilper">
                                                 <?php
-                                                echo form_dropdown('pertemuan', $Pertemuan, trim($this->security->xss_clean($this->input->get('pertemuan'))), 'onchange="this.form.submit()", class="select2 form-control custom-select"'); ?>
+                                                echo form_dropdown('pertemuan', $Pertemuan, trim($this->security->xss_clean($this->input->get('pertemuan'))), 'onchange="this.form.submit()", class="form-control",  style="width: 100%; height:36px;"'); ?>
                                             </div>
                                         </div>
                                     </form>
@@ -146,7 +146,7 @@
                                                 <label class="col-sm-3 text-left control-label col-form-label col-sm-4">Metode Pembelajaran *</label>
                                                 <div class="input-group col-sm-6">
                                                     <?php
-                                                    echo form_dropdown('metode[]', $MetodeAjar, $METODE, 'multiple class="select2 form-control custom-select"'); ?>
+                                                    echo form_dropdown('metode[]', $MetodeAjar, $METODE, 'multiple class="select2 form-control"'); ?>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -201,117 +201,120 @@
                                             <?php
 
                                         } ?>
-                                            <form action="<?php echo base_url(); ?>absen/simpan/<?php echo trim($this->security->xss_clean($this->input->get('pertemuan'))); ?>" method="POST" class="form-horizontal">
-                                                <table class="table table-bordered table-striped table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>NIM</th>
-                                                            <th>NAMA</th>
-                                                            <th>KETERANGAN</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-                                                        if (isset($GetAbsenMhs)) {
-                                                            $no = 1;
-                                                            echo form_hidden('idmakul', trim($this->security->xss_clean($this->uri->segment(3))));
-                                                            echo form_hidden('thnsm', trim($this->security->xss_clean($this->uri->segment(4))));
-                                                            echo form_hidden('idprodi', trim($this->security->xss_clean($this->uri->segment(5))));
-                                                            echo form_hidden('kls', trim($this->security->xss_clean($this->uri->segment(6))));
-                                                            echo form_hidden('smt', trim($this->security->xss_clean($this->uri->segment(7))));
-                                                            echo form_hidden('pertemuan', trim($this->security->xss_clean($this->input->get('pertemuan'))));
-                                                            foreach ($GetAbsenMhs as $value) {
-                                                                if ($no % 2 == 0) {
-                                                                    $var = 'class="warning"';
-                                                                } else {
-                                                                    $var = '';
-                                                                } ?>
-                                                        <tr <?php echo $var; ?>>
-                                                            <td width="15"><?php echo $no; ?></td>
-                                                            <td width="70"><?php echo $value->IDMAHASISWA; ?></td>
-                                                            <td width="350"><?php echo $value->NAMAMHS; ?></td>
-                                                            <td width="250">
-                                                                <select name="ket[<?php echo $value->IDMAHASISWA; ?>]" class="select2 form-control custom-select">
-                                                                    <?php
-                                                                    if (isset($GetAbsenMhsDetail[$value->IDMAHASISWA])) {
-                                                                        $data_absen = $GetAbsenMhsDetail[$value->IDMAHASISWA];
-                                                                    } else {
-                                                                        $data_absen = null;
-                                                                    }
-                                                                    switch ($data_absen) {
-                                                                        case "H":
-                                                                            echo '<option value="H">Hadir</option>';
-                                                                            echo '<option value="S">Sakit</option>';
-                                                                            echo '<option value="I">Izin</option>';
-                                                                            echo '<option value="A">Alpha</option>';
-                                                                            break;
-                                                                        case "S":
-                                                                            echo '<option value="S">Sakit</option>';
-                                                                            echo '<option value="H">Hadir</option>';
-                                                                            echo '<option value="I">Izin</option>';
-                                                                            echo '<option value="A">Alpha</option>';
-                                                                            break;
-                                                                        case "I":
-                                                                            echo '<option value="I">Izin</option>';
-                                                                            echo '<option value="S">Sakit</option>';
-                                                                            echo '<option value="H">Hadir</option>';
-                                                                            echo '<option value="A">Alpha</option>';
-                                                                            break;
-                                                                        case "A":
-                                                                            echo '<option value="A">Alpha</option>';
-                                                                            echo '<option value="I">Izin</option>';
-                                                                            echo '<option value="S">Sakit</option>';
-                                                                            echo '<option value="H">Hadir</option>';
-                                                                            break;
-                                                                        default:
-                                                                            echo '<option value="A">Alpha</option>';
-                                                                            echo '<option value="I">Izin</option>';
-                                                                            echo '<option value="S">Sakit</option>';
-                                                                            echo '<option value="H">Hadir</option>';
-                                                                            break;
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </td>
-                                                        </tr><?php
-                                                                $no++;
-                                                            }
-                                                        } else {
-                                                            $no = 1;
-                                                            echo form_hidden('idmakul', trim($this->security->xss_clean($this->uri->segment(3))));
-                                                            echo form_hidden('thnsm', trim($this->security->xss_clean($this->uri->segment(4))));
-                                                            echo form_hidden('idprodi', trim($this->security->xss_clean($this->uri->segment(5))));
-                                                            echo form_hidden('kls', trim($this->security->xss_clean($this->uri->segment(6))));
-                                                            echo form_hidden('smt', trim($this->security->xss_clean($this->uri->segment(7))));
-                                                            echo form_hidden('pertemuan', trim($this->security->xss_clean($this->input->get('pertemuan'))));
-                                                            foreach ($GetMhs as $value) {
-                                                                if ($no % 2 == 0) {
-                                                                    $var = 'class="warning"';
-                                                                } else {
-                                                                    $var = '';
-                                                                } ?>
-                                                        <tr <?php echo $var; ?>>
 
-                                                            <td width="15"><?php echo $no; ?></td>
-                                                            <td width="70"><?php echo $value->IDMAHASISWA; ?></td>
-                                                            <td width="350"><?php echo $value->NAMAMHS; ?></td>
-                                                            <td width="250">
-                                                                <select name="ket[<?php echo $value->IDMAHASISWA; ?>]" class="select2 form-control custom-select">
-                                                                    <option value="H">Hadir</option>
-                                                                    <option value="S">Sakit</option>
-                                                                    <option value="I">Izin</option>
-                                                                    <option value="A">Alpha</option>
-                                                                </select>
-                                                            </td>
-                                                        </tr><?php
-                                                                $no++;
-                                                            }
-                                                        } ?>
-                                                    </tbody>
-                                                </table>
-                                                <div class="form-actions">
-                                                    <button type="submit" class="btn btn-success">Submit</button>
+                                            <form action="<?php echo base_url(); ?>absen/simpan/<?php echo trim($this->security->xss_clean($this->input->get('pertemuan'))); ?>" method="POST" class="form-horizontal">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>NIM</th>
+                                                                <th>NAMA</th>
+                                                                <th>KETERANGAN</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                            if (isset($GetAbsenMhs)) {
+                                                                $no = 1;
+                                                                echo form_hidden('idmakul', trim($this->security->xss_clean($this->uri->segment(3))));
+                                                                echo form_hidden('thnsm', trim($this->security->xss_clean($this->uri->segment(4))));
+                                                                echo form_hidden('idprodi', trim($this->security->xss_clean($this->uri->segment(5))));
+                                                                echo form_hidden('kls', trim($this->security->xss_clean($this->uri->segment(6))));
+                                                                echo form_hidden('smt', trim($this->security->xss_clean($this->uri->segment(7))));
+                                                                echo form_hidden('pertemuan', trim($this->security->xss_clean($this->input->get('pertemuan'))));
+                                                                foreach ($GetAbsenMhs as $value) {
+                                                                    if ($no % 2 == 0) {
+                                                                        $var = 'class="warning"';
+                                                                    } else {
+                                                                        $var = '';
+                                                                    } ?>
+                                                            <tr <?php echo $var; ?>>
+                                                                <td width="15"><?php echo $no; ?></td>
+                                                                <td width="70"><?php echo $value->IDMAHASISWA; ?></td>
+                                                                <td width="350"><?php echo $value->NAMAMHS; ?></td>
+                                                                <td width="250">
+                                                                    <select name="ket[<?php echo $value->IDMAHASISWA; ?>]" class="form-control" style="width: 100%; height:36px;">
+                                                                        <?php
+                                                                        if (isset($GetAbsenMhsDetail[$value->IDMAHASISWA])) {
+                                                                            $data_absen = $GetAbsenMhsDetail[$value->IDMAHASISWA];
+                                                                        } else {
+                                                                            $data_absen = null;
+                                                                        }
+                                                                        switch ($data_absen) {
+                                                                            case "H":
+                                                                                echo '<option value="H">Hadir</option>';
+                                                                                echo '<option value="S">Sakit</option>';
+                                                                                echo '<option value="I">Izin</option>';
+                                                                                echo '<option value="A">Alpha</option>';
+                                                                                break;
+                                                                            case "S":
+                                                                                echo '<option value="S">Sakit</option>';
+                                                                                echo '<option value="H">Hadir</option>';
+                                                                                echo '<option value="I">Izin</option>';
+                                                                                echo '<option value="A">Alpha</option>';
+                                                                                break;
+                                                                            case "I":
+                                                                                echo '<option value="I">Izin</option>';
+                                                                                echo '<option value="S">Sakit</option>';
+                                                                                echo '<option value="H">Hadir</option>';
+                                                                                echo '<option value="A">Alpha</option>';
+                                                                                break;
+                                                                            case "A":
+                                                                                echo '<option value="A">Alpha</option>';
+                                                                                echo '<option value="I">Izin</option>';
+                                                                                echo '<option value="S">Sakit</option>';
+                                                                                echo '<option value="H">Hadir</option>';
+                                                                                break;
+                                                                            default:
+                                                                                echo '<option value="A">Alpha</option>';
+                                                                                echo '<option value="I">Izin</option>';
+                                                                                echo '<option value="S">Sakit</option>';
+                                                                                echo '<option value="H">Hadir</option>';
+                                                                                break;
+                                                                        }
+                                                                        ?>
+                                                                    </select>
+                                                                </td>
+                                                            </tr><?php
+                                                                    $no++;
+                                                                }
+                                                            } else {
+                                                                $no = 1;
+                                                                echo form_hidden('idmakul', trim($this->security->xss_clean($this->uri->segment(3))));
+                                                                echo form_hidden('thnsm', trim($this->security->xss_clean($this->uri->segment(4))));
+                                                                echo form_hidden('idprodi', trim($this->security->xss_clean($this->uri->segment(5))));
+                                                                echo form_hidden('kls', trim($this->security->xss_clean($this->uri->segment(6))));
+                                                                echo form_hidden('smt', trim($this->security->xss_clean($this->uri->segment(7))));
+                                                                echo form_hidden('pertemuan', trim($this->security->xss_clean($this->input->get('pertemuan'))));
+                                                                foreach ($GetMhs as $value) {
+                                                                    if ($no % 2 == 0) {
+                                                                        $var = 'class="warning"';
+                                                                    } else {
+                                                                        $var = '';
+                                                                    } ?>
+                                                            <tr <?php echo $var; ?>>
+
+                                                                <td width="15"><?php echo $no; ?></td>
+                                                                <td width="70"><?php echo $value->IDMAHASISWA; ?></td>
+                                                                <td width="350"><?php echo $value->NAMAMHS; ?></td>
+                                                                <td width="250">
+                                                                    <select name="ket[<?php echo $value->IDMAHASISWA; ?>]" class="form-control" style="width: 100%; height:36px;">
+                                                                        <option value="H">Hadir</option>
+                                                                        <option value="S">Sakit</option>
+                                                                        <option value="I">Izin</option>
+                                                                        <option value="A">Alpha</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr><?php
+                                                                    $no++;
+                                                                }
+                                                            } ?>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="form-actions">
+                                                        <button type="submit" class="btn btn-success">Submit</button>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>

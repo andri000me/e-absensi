@@ -15,7 +15,7 @@ class Login extends CI_Controller
 	}
 	function login_akses()
 	{
-		// $kirim = $this->m_login->post_to_url("http://data.uui.ac.id/auth/auth_dosen", $_POST);
+		// $kirim = $this->m_login->post_to_url("https://data.uui.ac.id/auth/auth_dosen", $_POST);
 		$kirim = $this->m_login->post_to_url("http://10.10.3.51/auth/auth_dosen", $_POST);
 		$respon = json_decode($kirim, true);
 		echo $kirim;
