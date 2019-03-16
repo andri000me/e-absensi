@@ -4,6 +4,7 @@ class Profil extends CI_Controller
 {
 	function __construct()
 	{
+		
 		parent::__construct();
 		$this->load->model('my_model');
 		$this->load->helper(array('form', 'url'));
@@ -81,26 +82,26 @@ class Profil extends CI_Controller
 							//echo $uploadTipe;
 							$data = array('KET_FILE' => $deskripsi, 'JUDUL' => $judul, 'NAMA_FILE' => $uploadFile, 'TIPEFILE' => $TipeFile, 'SIFAT' => $sifat);
 							if ($this->my_model->update("bahan_ajar", $where, $data)) {
-								$this->session->set_flashdata("msg", "<br/><div class='alert bg-success' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data berhasil diperbaharui.</div>");
+								$this->session->set_flashdata("msg", "<br/><div class='alert alert-primary' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data berhasil diperbaharui.</div>");
 								//redirect('materi/edit/'.$DataCekFile['ID']);
 								redirect('materi');
 							} else {
-								$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Gagal diperbaharui.</div>");
+								$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Gagal diperbaharui.</div>");
 								//redirect('materi/edit/'.$DataCekFile['ID']);
 								redirect('materi');
 							}
 						} else {
 							$error = $this->upload->display_errors();
-							$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>File Gagal diUpload. $error</div>");
+							$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>File Gagal diUpload. $error</div>");
 							redirect('materi');
 						}
 					} else {
 						$data = array('KET_FILE' => $deskripsi, 'JUDUL' => $judul, 'SIFAT' => $sifat);
 						if ($this->my_model->update("bahan_ajar", $where, $data)) {
-							$this->session->set_flashdata("msg", "<br/><div class='alert bg-success' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data berhasil diperbaharui.</div>");
+							$this->session->set_flashdata("msg", "<br/><div class='alert alert-primary' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data berhasil diperbaharui.</div>");
 							redirect('materi/edit/' . $DataCekFile['ID']);
 						} else {
-							$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Gagal diperbaharui.</div>");
+							$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Gagal diperbaharui.</div>");
 							redirect('materi/edit/' . $DataCekFile['ID']);
 						}
 					}
@@ -131,12 +132,12 @@ class Profil extends CI_Controller
 					if ($this->my_model->tambahdata("bahan_ajar", $data)) {
 						redirect('materi');
 					} else {
-						$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Gagal disimpan. Silahkan dicoba lagi.</div>");
+						$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Gagal disimpan. Silahkan dicoba lagi.</div>");
 						redirect('materi');
 					}
 				} else {
 					$error = $this->upload->display_errors();
-					$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>File Gagal diUpload. $error</div>");
+					$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>File Gagal diUpload. $error</div>");
 					redirect('materi');
 				}
 			}
@@ -150,10 +151,10 @@ class Profil extends CI_Controller
 		$IDSET = $this->uri->segment(3);
 		$where = array('IDSET' => $IDSET, 'IDDOSEN' => $this->session->userdata('id_user'));
 		if ($this->my_model->hapus("atur_bahan_ajar", $where)) {
-			$this->session->set_flashdata("msg", "<br/><div class='alert bg-success' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data berhasil dihapus.</div>");
+			$this->session->set_flashdata("msg", "<br/><div class='alert alert-success' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data berhasil dihapus.</div>");
 			redirect($_SERVER['HTTP_REFERER']);
 		} else {
-			$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Gagal dihapus. Coba lagi.</div>");
+			$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Gagal dihapus. Coba lagi.</div>");
 			redirect($_SERVER['HTTP_REFERER']);
 		}
 	}
@@ -169,10 +170,10 @@ class Profil extends CI_Controller
 				unlink('./upload/' . $DataGetFile['NAMA_FILE']);
 				$where = array('MATERI' => $DataGetFile['ID'], 'IDDOSEN' => $this->session->userdata('id_user'));
 				$this->my_model->hapus("atur_bahan_ajar", $where);
-				$this->session->set_flashdata("msg", "<br/><div class='alert bg-success' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data berhasil dihapus.</div>");
+				$this->session->set_flashdata("msg", "<br/><div class='alert alert-success' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data berhasil dihapus.</div>");
 				redirect('materi');
 			} else {
-				$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Gagal dihapus. Coba lagi.</div>");
+				$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Gagal dihapus. Coba lagi.</div>");
 				redirect('materi');
 			}
 		}
@@ -191,14 +192,14 @@ class Profil extends CI_Controller
 		$where = array('IDDOSEN' => $this->session->userdata('id_user'), 'THSHM' => $THSHM, 'IDPRODI' => $IDPRODI, 'IDMAKUL' => $IDMAKUL, 'NAMAKLS' => $NAMAKLS, 'SEMESTER' => $SEMESTER, 'PERTEMUAN' => $PERTEMUAN, 'MATERI' => $MATERI);
 		$GetBahanAjar = $this->my_model->cek_data("atur_bahan_ajar", $where);
 		if ($GetBahanAjar->num_rows() >= 1) {
-			$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Bahan Ajar ini sudah ditambahkan di pertemuan ini. Silahkan pilih bahan ajar yang lain..!</div>");
+			$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Bahan Ajar ini sudah ditambahkan di pertemuan ini. Silahkan pilih bahan ajar yang lain..!</div>");
 			redirect($_SERVER['HTTP_REFERER']);
 		} else {
 			$data = array('IDDOSEN' => $this->session->userdata('id_user'), 'THSHM' => $THSHM, 'IDPRODI' => $IDPRODI, 'IDMAKUL' => $IDMAKUL, 'NAMAKLS' => $NAMAKLS, 'SEMESTER' => $SEMESTER, 'PERTEMUAN' => $PERTEMUAN, 'MATERI' => $MATERI, 'CREATED' => $CREATED);
 			if ($this->my_model->tambahdata("atur_bahan_ajar", $data)) {
-				$this->session->set_flashdata("msg", "<br/><div class='alert bg-info' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Bahan Ajar ini berhasil di tambah ke pertemuan ini..!</div>");
+				$this->session->set_flashdata("msg", "<br/><div class='alert alert-info' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Bahan Ajar ini berhasil di tambah ke pertemuan ini..!</div>");
 			} else {
-				$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Bahan Ajar ini gagal di tambah ke pertemuan ini..!</div>");
+				$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Bahan Ajar ini gagal di tambah ke pertemuan ini..!</div>");
 			}
 			redirect($_SERVER['HTTP_REFERER']);
 		}
@@ -217,7 +218,7 @@ class Profil extends CI_Controller
 		if ($CekMateri->num_rows() >= 1) {
 			$data['DataMateri'] = $CekMateri->result();
 		} else {
-			$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Bahan Ajar Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
+			$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Bahan Ajar Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
 		}
 		$data['SifatDokumen'] = array("1" => "Open/Publik", "0" => "Private/Khusus Mahasiswa");
 		$data['header'] = "header/header";
@@ -235,7 +236,7 @@ class Profil extends CI_Controller
 		if ($CekProfil->num_rows() >= 1) {
 			$data['DataProfil'] = $CekProfil->result();
 		} else {
-			$this->session->set_flashdata("msg", "<br/><div class='alert bg-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Bahan Ajar Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
+			$this->session->set_flashdata("msg", "<br/><div class='alert alert-danger' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Data Bahan Ajar Tidak ditemukan. Silahkan Klik Tombol Sinkronisasi!</div>");
 		}
 		$data['header'] = "header/header2";
 		$data['navbar'] = "navbar/navbar2";

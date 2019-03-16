@@ -71,17 +71,17 @@
                 <!-- User profile and search -->
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown">
+                    <span class="text-light"> My Setting </span>
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url(); ?>template/matrix_admin/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My
+                        <a class="dropdown-item " href="<?= base_url('profil') ?>"><i class="ti-user mt-2 ml-2"></i> My
                             Profile</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i>
+                        <a class="dropdown-item " href="javascript:void(0)"><i class="ti-settings ml-2"></i>
                             Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?php echo base_url(); ?>login/logout"><i class="fa fa-power-off m-r-5 m-l-5"></i>
+                        <a class="dropdown-item " href="<?php echo base_url(); ?>login/logout"><i class="fa fa-power-off ml-2"></i>
                             Logout</a>
-                        <div class="dropdown-divider"></div>
                     </div>
                 </li>
                 <!-- ============================================================== -->
